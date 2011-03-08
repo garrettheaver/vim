@@ -1,3 +1,4 @@
+set nocompatible
 set hidden
 set number
 set ruler
