@@ -17,4 +17,7 @@ set smartindent
 
 set noswapfile
 
-colorscheme blackboard
+set t_Co=256
+if &t_Co == 256
+  colorscheme dante
+endif
