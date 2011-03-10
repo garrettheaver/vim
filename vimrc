@@ -17,7 +17,7 @@ set smartindent
 
 set noswapfile
 
-set t_Co=256
-if &t_Co == 256
+if has('gui_running')
+  set guioptions=-t
   colorscheme dante
 endif
