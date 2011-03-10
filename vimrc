@@ -16,3 +16,5 @@ set autoindent
 set smartindent
 
 set noswapfile
+
+colorscheme blackboard
