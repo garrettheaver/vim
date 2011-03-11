@@ -17,10 +17,12 @@ set smartindent
 
 set noswapfile
 
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
+match ExtraWhitespace /\(\t\|\s\+$\)/
+
 if has('gui_running')
   set guioptions=-t
   colorscheme dante
 endif
-
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\(\t\|\s\+$\)/
