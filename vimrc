@@ -18,6 +18,11 @@ set smartindent
 set noswapfile
 
 "
+" HIGHLIGHT SEARCHES
+"
+set incsearch
+
+"
 " SET THE CODE FOLDING OPTIONS
 "
 set foldmethod=syntax
