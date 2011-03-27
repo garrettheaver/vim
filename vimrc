@@ -26,7 +26,7 @@ set incsearch
 " SET THE CODE FOLDING OPTIONS
 "
 set foldmethod=syntax
-set foldlevel=2
+set foldlevel=1
 set foldminlines=1
 
 function! ToggleFold()
