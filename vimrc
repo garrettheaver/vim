@@ -42,8 +42,6 @@ function! ToggleFold()
   echo
 endf
 
-noremap z :call ToggleFold()<cr>
-
 highlight Folded guibg=grey20 guifg=grey80
 autocmd ColorScheme * highligh Folded guibg=grey20 guifg=grey80
 
@@ -62,3 +60,12 @@ if has('gui_running')
   set guioptions=-t
   colorscheme dante
 endif
+
+"
+" REMAPS
+"
+nnoremap <C-W>f <C-W>v<C-W>lgf
+nnoremap <C-W>F <C-W>s<C-W>jgf
+
+let mapleader=','
+map! <Leader>f <Esc>gg=G
