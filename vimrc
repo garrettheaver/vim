@@ -58,6 +58,7 @@ if has('gui_running')
   end
 
   if has('gui_macvim')
+    set columns=999
     autocmd GUIEnter * set fullscreen
   endif
 
