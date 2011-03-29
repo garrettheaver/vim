@@ -1,4 +1,10 @@
 set nocompatible
+
+"
+" LOAD UP ADDITIONAL PLUGINS
+"
+silent! call pathogen#runtime_append_all_bundles()
+
 set hidden
 set number
 set ruler
