@@ -67,8 +67,8 @@ endif
 "
 " REMAPS
 "
-nnoremap <C-W>f <C-W>v<C-W>lgf
-nnoremap <C-W>F <C-W>s<C-W>jgf
+nnoremap <C-w>f <C-w>v<C-w>lgf
+nnoremap <C-w>F <C-w>s<C-w>jgf
 
 let mapleader=','
-map! <Leader>f <Esc>gg=G
+map! <Leader>f <Esc>:retab<Cr> \| <Esc>:%s/\s*$//g<Cr> \| <Esc>gg=G
