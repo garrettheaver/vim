@@ -47,11 +47,20 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\(\t\|\s\+$\)/
 
 "
-" DISABLE THE TOOLBAR ON GUI
+" DISABLE THE TOOLBAR AND GO FULLSCREEN ON GUI
 "
 if has('gui_running')
   set guioptions=-t
   colorscheme dante
+
+  if has('gui_win32')
+    autocmd GUIEnter * :simalt ~x
+  end
+
+  if has('gui_macvim')
+    autocmd GUIEnter * set fullscreen
+  endif
+
 endif
 
 "
