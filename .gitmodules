@@ -13,3 +13,6 @@
 [submodule "bundles/vim-jade"]
 	path = bundles/vim-jade
 	url = https://github.com/digitaltoad/vim-jade.git
+[submodule "bundles/vim-endwise"]
+	path = bundles/vim-endwise
+	url = https://github.com/tpope/vim-endwise.git
