@@ -35,21 +35,8 @@ set foldmethod=syntax
 set foldlevel=1
 set foldminlines=1
 
-function! ToggleFold()
-  if foldlevel('.') == 0
-    normal! 1
-  else
-    if foldclosed('.') < 0
-      . foldclose
-    else
-      . foldopen
-    endif
-  endif
-  echo
-endf
-
 highlight Folded guibg=grey20 guifg=grey80
-autocmd ColorScheme * highligh Folded guibg=grey20 guifg=grey80
+autocmd ColorScheme * highlight Folded guibg=grey20 guifg=grey80
 
 "
 " SET WHITESPACE HIGHLIGHT
