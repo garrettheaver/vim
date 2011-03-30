@@ -41,10 +41,13 @@ autocmd ColorScheme * highlight Folded guibg=grey20 guifg=grey80
 "
 " SET WHITESPACE HIGHLIGHT
 "
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+highlight PoxyTabs ctermbg=cyan guibg=cyan
+autocmd Syntax * syn match PoxyTabs /\t/ containedin=ALL
+autocmd ColorScheme * highlight PoxyTabs ctermbg=cyan guibg=cyan
 
-match ExtraWhitespace /\(\t\|\s\+$\)/
+highlight PoxySpaces ctermbg=red guibg=red
+autocmd Syntax * syn match PoxySpaces /\s\+$/ containedin=ALL
+autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
 
 "
 " DISABLE THE TOOLBAR AND GO FULLSCREEN ON GUI
