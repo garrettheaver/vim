@@ -1,15 +1,15 @@
 [submodule "bundle/vim-haml"]
 	path = bundle/vim-haml
-	url = https://github.com/tpope/vim-haml.git
+	url = http://github.com/tpope/vim-haml.git
 [submodule "bundle/vim-cucumber"]
 	path = bundle/vim-cucumber
-	url = https://github.com/tpope/vim-cucumber.git
+	url = http://github.com/tpope/vim-cucumber.git
 [submodule "bundle/vim-rails"]
 	path = bundle/vim-rails
-	url = https://github.com/tpope/vim-rails.git
+	url = http://github.com/tpope/vim-rails.git
 [submodule "bundle/vim-jade"]
 	path = bundle/vim-jade
-	url = https://github.com/digitaltoad/vim-jade.git
+	url = http://github.com/digitaltoad/vim-jade.git
 [submodule "bundle/vim-endwise"]
 	path = bundle/vim-endwise
-	url = https://github.com/tpope/vim-endwise.git
+	url = http://github.com/tpope/vim-endwise.git
