@@ -63,6 +63,7 @@ if has('gui_running')
   if has('gui_macvim')
     set columns=999
     autocmd GUIEnter * set fullscreen
+    set guifont=Consolas:h10:cDEFAULT
   endif
 
 endif
@@ -74,4 +75,4 @@ nnoremap <C-w>f <C-w>v<C-w>lgf
 nnoremap <C-w>F <C-w>s<C-w>jgf
 
 let mapleader=','
-map! <Leader>f <Esc>:retab<Cr> \| <Esc>:%s/\s*$//g<Cr> \| <Esc>gg=G
+nmap <Leader>f <Esc>:retab<Cr> \| <Esc>:%s/\s*$//g<Cr> \| <Esc>gg=G
