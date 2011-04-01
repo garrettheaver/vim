@@ -15,6 +15,9 @@ filetype plugin indent on
 set wildmode=list:longest
 set laststatus=2
 
+"
+" DEFINE THE TAB OPTIONS
+"
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -23,6 +26,12 @@ set smartindent
 set nowrap
 
 set noswapfile
+
+"
+" DEFINE THE SPLIT OPTIONS
+"
+set splitright
+set splitbelow
 
 "
 " HIGHLIGHT SEARCHES
