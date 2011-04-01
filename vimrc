@@ -58,12 +58,12 @@ if has('gui_running')
 
   if has('gui_win32')
     autocmd GUIEnter * :simalt ~x
+    set guifont=Consolas:h10:cDEFAULT
   end
 
   if has('gui_macvim')
     set columns=999
     autocmd GUIEnter * set fullscreen
-    set guifont=Consolas:h10:cDEFAULT
   endif
 
 endif
