@@ -20,6 +20,7 @@ set tabstop=2
 set shiftwidth=2
 set autoindent
 set smartindent
+set nowrap
 
 set noswapfile
 
@@ -54,7 +55,7 @@ autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
 "
 if has('gui_running')
   set guioptions=-t
-  colorscheme dante
+  colorscheme darkz
 
   if has('gui_win32')
     autocmd GUIEnter * :simalt ~x
