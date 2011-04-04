@@ -85,6 +85,6 @@ nnoremap <C-w>f <C-w>v<C-w>lgf
 nnoremap <C-w>F <C-w>s<C-w>jgf
 
 let mapleader=','
-nmap <Leader>f <Esc>:retab<Cr> \| <Esc>:%s/\s*$//g<Cr> \| <Esc>gg=G
-nmap <Leader>qfa <Esc>:%s/\"/\'/g<Cr>
-nmap <Leader>qfc <Esc>:%s/\"/\'/gc<Cr>
+nmap <Leader>ff <Esc>:retab<Cr> \| <Esc>:%s/\s*$//g<Cr> \| <Esc>gg=G
+nmap <Leader>fqa <Esc>:%s/\"/\'/g<Cr>
+nmap <Leader>fqc <Esc>:%s/\"/\'/gc<Cr>
