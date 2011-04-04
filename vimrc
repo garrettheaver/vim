@@ -86,3 +86,5 @@ nnoremap <C-w>F <C-w>s<C-w>jgf
 
 let mapleader=','
 nmap <Leader>f <Esc>:retab<Cr> \| <Esc>:%s/\s*$//g<Cr> \| <Esc>gg=G
+nmap <Leader>qfa <Esc>:%s/\"/\'/g<Cr>
+nmap <Leader>qfc <Esc>:%s/\"/\'/gc<Cr>

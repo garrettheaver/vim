@@ -22,3 +22,9 @@
 [submodule "bundle/javascript-indent"]
 	path = bundle/javascript-indent
 	url = http://github.com/vim-scripts/JavaScript-Indent.git
+[submodule "bundle/vim-ruby-refactoring"]
+	path = bundle/vim-ruby-refactoring
+	url = http://github.com/ecomba/vim-ruby-refactoring.git
+[submodule "bundle/matchit"]
+	path = bundle/matchit
+	url = http://github.com/vim-scripts/matchit.zip.git
