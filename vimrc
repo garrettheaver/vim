@@ -49,6 +49,12 @@ highlight Folded guibg=grey20 guifg=grey80
 autocmd ColorScheme * highlight Folded guibg=grey20 guifg=grey80
 
 "
+" SYNTAX FOLD XML
+"
+let g:xml_syntax_folding=1
+autocmd FileType xml setlocal foldmethod=syntax
+
+"
 " SET WHITESPACE HIGHLIGHT
 "
 highlight PoxyTabs ctermbg=cyan guibg=cyan
