@@ -69,6 +69,7 @@ autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
 " DISABLE THE TOOLBAR AND GO FULLSCREEN ON GUI
 "
 if has('gui_running')
+
   set guioptions=-t
   colorscheme darkz
 
@@ -91,7 +92,7 @@ nnoremap <C-w>f <C-w>v<C-w>lgf
 nnoremap <C-w>F <C-w>s<C-w>jgf
 
 let mapleader=','
-nmap <Leader>ff <Esc>:retab<Cr> \| <Esc>:%s/\s*$//g<Cr> \| <Esc>gg=G
-nmap <Leader>fqa <Esc>:%s/\"/\'/g<Cr>
-nmap <Leader>fqc <Esc>:%s/\"/\'/gc<Cr>
-nmap <Leader>e <Esc>:FufCoverageFile<Cr>
+nmap <Leader>ff :retab<Cr> \| :%s/\s*$//g<Cr> \| gg=G
+nmap <Leader>fqa :%s/\"/\'/g<Cr>
+nmap <Leader>fqc :%s/\"/\'/gc<Cr>
+nmap <Leader>e :FufCoverageFile<Cr>
