@@ -96,3 +96,4 @@ nmap <Leader>ff :retab<Cr> \| :%s/\s*$//g<Cr> \| gg=G
 nmap <Leader>fqa :%s/\"/\'/g<Cr>
 nmap <Leader>fqc :%s/\"/\'/gc<Cr>
 nmap <Leader>e :FufCoverageFile<Cr>
+nmap <Leader>w :w<Cr>
