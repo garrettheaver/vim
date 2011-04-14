@@ -96,5 +96,32 @@ let mapleader=','
 nmap <Leader>ff :retab<Cr> \| :%s/\s*$//g<Cr> \| gg=G
 nmap <Leader>fqa :%s/\"/\'/g<Cr>
 nmap <Leader>fqc :%s/\"/\'/gc<Cr>
-nmap <Leader>e :FufCoverageFile<Cr>
 nmap <Leader>w :w<Cr>
+
+"
+" Configure the FuzzyFileFinder
+"
+function FufOpenCurrent()
+  let g:fuf_keyOpen='<CR>'
+  let g:fuf_keyOpenVsplit=''
+  let g:fuf_keyOpenSplit=''
+  exe 'FufCoverageFile'
+endfunction
+
+function FufOpenVsplit()
+  let g:fuf_keyOpen=''
+  let g:fuf_keyOpenVsplit='<CR>'
+  let g:fuf_keyOpenSplit=''
+  exe 'FufCoverageFile'
+endfunction
+
+function FufOpenHsplit()
+  let g:fuf_keyOpen=''
+  let g:fuf_keyOpenVsplit=''
+  let g:fuf_keyOpenSplit='<CR>'
+  exe 'FufCoverageFile'
+endfunction
+
+map <silent> <leader>e :call FufOpenCurrent()<CR>
+map <silent> <leader>sv :call FufOpenVsplit()<CR>
+map <silent> <leader>sh :call FufOpenHsplit()<CR>
