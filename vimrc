@@ -89,14 +89,11 @@ endif
 "
 " REMAPS
 "
-nnoremap <C-w>f <C-w>v<C-w>lgf
-nnoremap <C-w>F <C-w>s<C-w>jgf
-
 let mapleader=','
-nmap <Leader>ff :retab<Cr> \| :%s/\s*$//g<Cr> \| gg=G
-nmap <Leader>fqa :%s/\"/\'/g<Cr>
-nmap <Leader>fqc :%s/\"/\'/gc<Cr>
-nmap <Leader>w :w<Cr>
+map <silent> <Leader>ff :retab<Cr> \| :%s/\s*$//g<Cr> \| gg=G
+map <silent> <Leader>fqa :%s/\"/\'/g<Cr>
+map <silent> <Leader>fqc :%s/\"/\'/gc<Cr>
+map <silent> <Leader>w :w<Cr>
 
 "
 " Configure the FuzzyFileFinder
