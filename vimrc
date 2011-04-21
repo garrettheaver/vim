@@ -90,14 +90,14 @@ endif
 " REMAPS
 "
 let mapleader=','
-map <silent> <Leader>ff :retab<CR> \| :%s/\s*$//g<CR> \| gg=G
-map <silent> <Leader>fqa :%s/\"/\'/g<CR>
-map <silent> <Leader>fqc :%s/\"/\'/gc<CR>
-map <silent> <Leader>w :w<CR>
-map <silent> <Leader>a= :Tabularize /=<CR>
-map <silent> <Leader>a: :Tabularize /:\zs<CR>
-map <silent> <Leader>ut :GundoToggle<CR>
-map <silent> <Leader>ur :GundoRenderGraph<CR>
+map <silent> <leader>ff :retab<CR> \| :%s/\s*$//g<CR> \| gg=G
+map <silent> <leader>fqa :%s/\"/\'/g<CR>
+map <silent> <leader>fqc :%s/\"/\'/gc<CR>
+map <silent> <leader>w :w<CR>
+map <silent> <leader>a= :Tabularize /=<CR>
+map <silent> <leader>a: :Tabularize /:\zs<CR>
+map <silent> <leader>ut :GundoToggle<CR>
+map <silent> <leader>ur :GundoRenderGraph<CR>
 
 "
 " Configure the FuzzyFileFinder
@@ -126,3 +126,4 @@ endfunction
 map <silent> <leader>e :call FufOpenCurrent()<CR>
 map <silent> <leader>sv :call FufOpenVsplit()<CR>
 map <silent> <leader>sh :call FufOpenHsplit()<CR>
+map <silent> <leader>fr :FufRenewCache<CR>
