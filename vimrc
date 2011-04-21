@@ -90,29 +90,31 @@ endif
 " REMAPS
 "
 let mapleader=','
-map <silent> <Leader>ff :retab<Cr> \| :%s/\s*$//g<Cr> \| gg=G
-map <silent> <Leader>fqa :%s/\"/\'/g<Cr>
-map <silent> <Leader>fqc :%s/\"/\'/gc<Cr>
-map <silent> <Leader>w :w<Cr>
+map <silent> <Leader>ff :retab<CR> \| :%s/\s*$//g<CR> \| gg=G
+map <silent> <Leader>fqa :%s/\"/\'/g<CR>
+map <silent> <Leader>fqc :%s/\"/\'/gc<CR>
+map <silent> <Leader>w :w<CR>
+map <silent> <Leader>a= :Tabularize /=<CR>
+map <silent> <Leader>a: :Tabularize /:\zs<CR>
 
 "
 " Configure the FuzzyFileFinder
 "
-function FufOpenCurrent()
+function! FufOpenCurrent()
   let g:fuf_keyOpen='<CR>'
   let g:fuf_keyOpenVsplit=''
   let g:fuf_keyOpenSplit=''
   exe 'FufCoverageFile'
 endfunction
 
-function FufOpenVsplit()
+function! FufOpenVsplit()
   let g:fuf_keyOpen=''
   let g:fuf_keyOpenVsplit='<CR>'
   let g:fuf_keyOpenSplit=''
   exe 'FufCoverageFile'
 endfunction
 
-function FufOpenHsplit()
+function! FufOpenHsplit()
   let g:fuf_keyOpen=''
   let g:fuf_keyOpenVsplit=''
   let g:fuf_keyOpenSplit='<CR>'
