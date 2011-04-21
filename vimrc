@@ -96,6 +96,8 @@ map <silent> <Leader>fqc :%s/\"/\'/gc<CR>
 map <silent> <Leader>w :w<CR>
 map <silent> <Leader>a= :Tabularize /=<CR>
 map <silent> <Leader>a: :Tabularize /:\zs<CR>
+map <silent> <Leader>ut :GundoToggle<CR>
+map <silent> <Leader>ur :GundoRenderGraph<CR>
 
 "
 " Configure the FuzzyFileFinder
