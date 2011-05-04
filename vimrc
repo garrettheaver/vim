@@ -87,13 +87,13 @@ if has('gui_running')
 endif
 
 "
-" CUSTOM REFORMAT FUNCTION
+" CUSTOM FORMAT FUNCTION
 "
 function! FormatFile()
   :norm myHmz
   :exec 'retab'
   :exec '%s/\s*$//g'
-  :exec 'normal gg=G'
+  :norm gg=G
   :norm `zzt`y
 endfunction
 
