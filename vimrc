@@ -87,10 +87,21 @@ if has('gui_running')
 endif
 
 "
+" CUSTOM REFORMAT FUNCTION
+"
+function! FormatFile()
+  :norm myHmz
+  :exec 'retab'
+  :exec '%s/\s*$//g'
+  :exec 'normal gg=G'
+  :norm `zzt`y
+endfunction
+
+"
 " REMAPS
 "
 let mapleader=','
-map <silent> <leader>ff :retab<CR> \| :%s/\s*$//g<CR> \| gg=G
+map <silent> <leader>ff :call FormatFile()<CR>
 map <silent> <leader>fqa :%s/\"/\'/g<CR>
 map <silent> <leader>fqc :%s/\"/\'/gc<CR>
 map <silent> <leader>w :w<CR>
