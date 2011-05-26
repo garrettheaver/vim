@@ -13,9 +13,6 @@
 [submodule "bundle/vim-endwise"]
 	path = bundle/vim-endwise
 	url = http://github.com/tpope/vim-endwise.git
-[submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = http://github.com/msanders/snipmate.vim.git
 [submodule "bundle/vim-coffee-script"]
 	path = bundle/vim-coffee-script
 	url = http://github.com/kchmck/vim-coffee-script.git
@@ -40,3 +37,6 @@
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = http://github.com/sjl/gundo.vim
+[submodule "bundle/velocity"]
+	path = bundle/velocity
+	url = http://github.com/vim-scripts/velocity.vim.git

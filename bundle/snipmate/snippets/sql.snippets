@@ -1,0 +1,42 @@
+snippet	timestamp
+	--
+	-- updated_at timestamp trigger
+	--
+	CREATE OR REPLACE FUNCTION fn_timestamp() RETURNS trigger AS $$
+	BEGIN
+		NEW.updated_at := CURRENT_TIMESTAMP;
+		RETURN NEW;
+	END;
+	$$ LANGUAGE plpgsql VOLATILE;
+
+snippet	table
+	--
+	-- $1
+	--
+	CREATE SEQUENCE sq_$1;
+
+	CREATE TABLE ${1:}
+	(
+		id int NOT NULL DEFAULT nextval('sq_$1'),${2}
+		created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		CONSTRAINT pk_$1 PRIMARY KEY (id)
+	);
+
+	CREATE TRIGGER tg_$1_timestamp
+	BEFORE UPDATE ON $1 FOR EACH ROW
+	EXECUTE PROCEDURE fn_timestamp();
+
+snippet	foreign
+	ALTER TABLE $1
+	ADD CONSTRAINT fk_${1:}_${2:}
+	FOREIGN KEY ($2) REFERENCES ${3:} (${4:id})
+	ON DELETE ${5:CASCADE};
+
+snippet	index
+	CREATE INDEX ix_${1:}_${2:}
+	ON $1 ($2);
+
+snippet	unique
+	CREATE UNIQUE INDEX ux_${1:}_${2:}
+	ON $1 ($2);
