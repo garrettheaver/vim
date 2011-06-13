@@ -45,9 +45,6 @@ set foldmethod=syntax
 set foldlevel=1
 set foldminlines=1
 
-highlight Folded guibg=grey20 guifg=grey80
-autocmd ColorScheme * highlight Folded guibg=grey20 guifg=grey80
-
 "
 " SYNTAX FOLD XML
 "
@@ -71,7 +68,7 @@ autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
 if has('gui_running')
 
   set guioptions=-t
-  colorscheme darkz
+  colorscheme garrett
 
   if has('gui_win32')
     autocmd GUIEnter * :simalt ~x
@@ -138,4 +135,4 @@ endfunction
 map <silent> <leader>e :call FufOpenCurrent()<CR>
 map <silent> <leader>sv :call FufOpenVsplit()<CR>
 map <silent> <leader>sh :call FufOpenHsplit()<CR>
-map <silent> <leader>fr :FufRenewCache<CR>
+map <silent> <leader>cc :FufRenewCache<CR>
