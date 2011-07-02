@@ -1,4 +1,3 @@
-" Vim color file
 " Created by Garrett
 " Derived from DarkZ
 
@@ -9,7 +8,7 @@ if version > 580
     syntax reset
   endif
 endif
-let g:colors_name="garrett"
+let g:colors_name="gdarkz"
 
 hi Normal guifg=#DFD6C1 guibg=gray16 gui=none
 
@@ -35,7 +34,7 @@ hi WildMenu     guifg=gray           guibg=gray17   gui=none
 hi MatchParen   guifg=cyan           guibg=#6C6C6C  gui=none
 
 " syntax highlighting groups
-hi Comment     guifg=gray50         gui=italic
+hi Comment      guifg=gray50         gui=italic
 hi Constant     guifg=#FF77FF        gui=none
 hi Identifier   guifg=#6FDEF8        gui=none
 hi Function     guifg=#82EF2A        gui=none
