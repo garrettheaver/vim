@@ -40,3 +40,6 @@
 [submodule "bundle/velocity"]
 	path = bundle/velocity
 	url = http://github.com/vim-scripts/velocity.vim.git
+[submodule "bundle/nginx.vim"]
+	path = bundle/nginx.vim
+	url = http://github.com/vim-scripts/nginx.vim.git
