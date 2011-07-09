@@ -68,7 +68,7 @@ autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
 if has('gui_running')
 
   set guioptions=-t
-  colorscheme gdarkz
+  colorscheme gmolokai
 
   if has('gui_win32')
     autocmd GUIEnter * :simalt ~x
