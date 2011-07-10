@@ -57,10 +57,12 @@ autocmd FileType xml setlocal foldmethod=syntax
 highlight PoxyTabs ctermbg=cyan guibg=cyan
 autocmd Syntax * syn match PoxyTabs /\t/ containedin=ALL
 autocmd ColorScheme * highlight PoxyTabs ctermbg=cyan guibg=cyan
+autocmd FileType diff,help syntax clear PoxyTabs
 
 highlight PoxySpaces ctermbg=red guibg=red
 autocmd Syntax * syn match PoxySpaces /\s\+$/ containedin=ALL
 autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
+autocmd FileType diff,help syntax clear PoxySpaces
 
 "
 " DISABLE THE TOOLBAR AND GO FULLSCREEN ON GUI
