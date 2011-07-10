@@ -88,11 +88,11 @@ endif
 " CUSTOM FORMAT FUNCTION
 "
 function! FormatFile()
-  :norm myHmz
-  :exec 'retab'
-  :exec '%s/\s*$//g'
-  :norm gg=G
-  :norm `zzt`y
+  norm myHmz
+  exec 'retab'
+  exec '%s/\s*$//g'
+  norm gg=G
+  norm `zzt`y
 endfunction
 
 "
@@ -102,11 +102,9 @@ let mapleader=','
 map <silent> <leader>ff :call FormatFile()<CR>
 map <silent> <leader>fqa :%s/\"/\'/g<CR>
 map <silent> <leader>fqc :%s/\"/\'/gc<CR>
-map <silent> <leader>w :w<CR>
 map <silent> <leader>a= :Tabularize /=<CR>
 map <silent> <leader>a: :Tabularize /:\zs<CR>
 map <silent> <leader>ut :GundoToggle<CR>
-map <silent> <leader>ur :GundoRenderGraph<CR>
 
 "
 " Configure the FuzzyFileFinder
@@ -115,21 +113,21 @@ function! FufOpenCurrent()
   let g:fuf_keyOpen='<CR>'
   let g:fuf_keyOpenVsplit=''
   let g:fuf_keyOpenSplit=''
-  exe 'FufCoverageFile'
+  exec 'FufCoverageFile'
 endfunction
 
 function! FufOpenVsplit()
   let g:fuf_keyOpen=''
   let g:fuf_keyOpenVsplit='<CR>'
   let g:fuf_keyOpenSplit=''
-  exe 'FufCoverageFile'
+  exec 'FufCoverageFile'
 endfunction
 
 function! FufOpenHsplit()
   let g:fuf_keyOpen=''
   let g:fuf_keyOpenVsplit=''
   let g:fuf_keyOpenSplit='<CR>'
-  exe 'FufCoverageFile'
+  exec 'FufCoverageFile'
 endfunction
 
 map <silent> <leader>e :call FufOpenCurrent()<CR>
