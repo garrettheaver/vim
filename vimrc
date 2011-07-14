@@ -92,9 +92,20 @@ endif
 function! FormatFile()
   norm myHmz
   exec 'retab'
-  exec '%s/\s*$//g'
+  exec '%s/\s*$//ge'
   norm gg=G
   norm `zzt`y
+  redraw!
+endfunction
+
+function! ReformatRuby()
+  exec '%s/{\s*/{ /ge'
+  exec '%s/\s*(\s*/(/ge'
+  exec '%s/\s*}/ }/ge'
+  exec '%s/\s*)/)/ge'
+  exec '%s/\s*,\s*/, /ge'
+  exec "%s/\"\\([^#]*\\)\"/'\\1'/ge"
+  call FormatFile()
 endfunction
 
 "
@@ -102,6 +113,7 @@ endfunction
 "
 let mapleader=','
 map <silent> <leader>ff :call FormatFile()<CR>
+map <silent> <leader>rr :call ReformatRuby()<CR>
 map <silent> <leader>fqa :%s/\"/\'/g<CR>
 map <silent> <leader>fqc :%s/\"/\'/gc<CR>
 map <silent> <leader>a= :Tabularize /=<CR>
