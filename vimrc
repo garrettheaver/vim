@@ -113,12 +113,16 @@ endfunction
 "
 let mapleader=','
 map <silent> <leader>ff :call FormatFile()<CR>
-map <silent> <leader>rr :call ReformatRuby()<CR>
 map <silent> <leader>fqa :%s/\"/\'/g<CR>
 map <silent> <leader>fqc :%s/\"/\'/gc<CR>
 map <silent> <leader>a= :Tabularize /=<CR>
 map <silent> <leader>a: :Tabularize /:\zs<CR>
 map <silent> <leader>ut :GundoToggle<CR>
+
+"
+" SPECIAL FILETYPE REMAPS
+"
+autocmd FileType ruby map <silent> <Leader>ff :call ReformatRuby()<CR>
 
 "
 " Configure the FuzzyFileFinder
