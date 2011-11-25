@@ -98,16 +98,6 @@ function! FormatFile()
   redraw!
 endfunction
 
-function! ReformatRuby()
-  exec '%s/{\s*/{ /ge'
-  exec '%s/\s*(\s*/(/ge'
-  exec '%s/\s*}/ }/ge'
-  exec '%s/\s*)/)/ge'
-  exec '%s/\s*,\s*/, /ge'
-  exec "%s/\"\\([^#]*\\)\"/'\\1'/ge"
-  call FormatFile()
-endfunction
-
 "
 " REMAPS
 "
@@ -120,17 +110,13 @@ map <silent> <leader>a: :Tabularize /:\zs<CR>
 map <silent> <leader>ut :GundoToggle<CR>
 
 "
-" SPECIAL FILETYPE REMAPS
-"
-autocmd FileType ruby map <silent> <Leader>ff :call ReformatRuby()<CR>
-
-"
 " Configure the FuzzyFileFinder
 "
 function! FufOpenCurrent()
   let g:fuf_keyOpen='<CR>'
   let g:fuf_keyOpenVsplit=''
   let g:fuf_keyOpenSplit=''
+  exec 'FufRenewCache'
   exec 'FufCoverageFile'
 endfunction
 
@@ -138,6 +124,7 @@ function! FufOpenVsplit()
   let g:fuf_keyOpen=''
   let g:fuf_keyOpenVsplit='<CR>'
   let g:fuf_keyOpenSplit=''
+  exec 'FufRenewCache'
   exec 'FufCoverageFile'
 endfunction
 
@@ -145,6 +132,7 @@ function! FufOpenHsplit()
   let g:fuf_keyOpen=''
   let g:fuf_keyOpenVsplit=''
   let g:fuf_keyOpenSplit='<CR>'
+  exec 'FufRenewCache'
   exec 'FufCoverageFile'
 endfunction
 
