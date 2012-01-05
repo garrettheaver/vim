@@ -52,6 +52,20 @@ let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 
 "
+" RUNNING TESTS
+"
+autocmd FileType ruby map <Leader>t :call RunTests()<CR>
+
+function! RunTests()
+  exec 'w'
+
+  let path = expand('%')
+  if path =~ '_spec\.rb$'
+    exec '!rspec --no-color %'
+  endif
+endfunction
+
+"
 " SET WHITESPACE HIGHLIGHT
 "
 highlight PoxyTabs ctermbg=cyan guibg=cyan
@@ -137,6 +151,5 @@ function! FufOpenHsplit()
 endfunction
 
 map <silent> <leader>e :call FufOpenCurrent()<CR>
-map <silent> <leader>sv :call FufOpenVsplit()<CR>
-map <silent> <leader>sh :call FufOpenHsplit()<CR>
-map <silent> <leader>cc :FufRenewCache<CR>
+map <silent> <leader>v :call FufOpenVsplit()<CR>
+map <silent> <leader>h :call FufOpenHsplit()<CR>
