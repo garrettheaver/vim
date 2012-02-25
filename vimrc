@@ -157,6 +157,5 @@ map <silent> <leader>h :call FufOpenHsplit()<CR>
 "
 " SESSION SAVE AND RESTORE
 "
-set sessionoptions+=resize
-map <silent> <leader>ss :mksession! .vimsession<CR>
-map <silent> <leader>rs :source .vimsession<CR><C-w>=<CR>
+map <silent> <leader>ss :mksession! .session<CR>
+map <silent> <leader>rs :source .session<CR><C-w>=<CR>
