@@ -153,3 +153,10 @@ endfunction
 map <silent> <leader>e :call FufOpenCurrent()<CR>
 map <silent> <leader>v :call FufOpenVsplit()<CR>
 map <silent> <leader>h :call FufOpenHsplit()<CR>
+
+"
+" SESSION SAVE AND RESTORE
+"
+set sessionoptions+=resize
+map <silent> <leader>ss :mksession! .vimsession<CR>
+map <silent> <leader>rs :source .vimsession<CR><C-w>=<CR>
