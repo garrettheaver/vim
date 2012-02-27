@@ -52,11 +52,17 @@ let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 
 "
+" SET SPELL CHECKING
+"
+autocmd FileType cucumber setlocal spell spelllang=en_gb
+
+"
 " RUNNING TESTS
 "
-autocmd FileType ruby map <Leader>t :call RunTests()<CR>
+autocmd FileType ruby map <buffer> <Leader>t :call RunRSpecTests()<CR>
+autocmd FileType cucumber map <buffer> <Leader>t :call RunCucumberTests()<CR>
 
-function! RunTests()
+function! RunRSpecTests()
   exec 'w'
   let path = expand('%:p')
 
@@ -67,6 +73,11 @@ function! RunTests()
   endif
 
   exec '!rspec --no-color ' . path
+endfunction
+
+function! RunCucumberTests()
+  exec 'w'
+  exec '!cucumber --no-color ' . expand('%:p')
 endfunction
 
 "
