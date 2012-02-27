@@ -58,11 +58,15 @@ autocmd FileType ruby map <Leader>t :call RunTests()<CR>
 
 function! RunTests()
   exec 'w'
+  let path = expand('%:p')
 
-  let path = expand('%')
-  if path =~ '_spec\.rb$'
-    exec '!rspec --no-color %'
+  " MAP LIB FILES TO UNIT SPECS
+  if path =~ '\/lib\/.\+\.rb$'
+    let path = substitute(path, '\/lib\/', '/spec/unit/', '')
+    let path = substitute(path, '.rb$', '_spec.rb', '')
   endif
+
+  exec '!rspec --no-color ' . path
 endfunction
 
 "
