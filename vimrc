@@ -113,6 +113,11 @@ if has('gui_running')
     autocmd GUIEnter * set fullscreen
   endif
 
+else
+
+  set t_Co=256
+  colorscheme gmolokai
+
 endif
 
 "
