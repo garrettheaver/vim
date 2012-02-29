@@ -116,7 +116,8 @@ if has('gui_running')
 else
 
   set t_Co=256
-  colorscheme gmolokai
+  runtime! manual/guicolorscheme/plugin/guicolorscheme.vim
+  GuiColorScheme gmolokai
 
 endif
 

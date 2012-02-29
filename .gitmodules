@@ -37,3 +37,6 @@
 [submodule "bundle/nginx.vim"]
 	path = bundle/nginx.vim
 	url = http://github.com/vim-scripts/nginx.vim.git
+[submodule "manual/guicolorscheme"]
+	path = manual/guicolorscheme
+	url = https://github.com/vim-scripts/guicolorscheme.vim
