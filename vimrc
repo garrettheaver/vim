@@ -72,12 +72,20 @@ function! RunRSpecTests()
     let path = substitute(path, '.rb$', '_spec.rb', '')
   endif
 
-  exec '!rspec --no-color ' . path
+  call ExecuteColorCommand('!rspec', path)
 endfunction
 
 function! RunCucumberTests()
   exec 'w'
-  exec '!cucumber --no-color ' . expand('%:p')
+  call ExecuteColorCommand('!cucumber', expand('%:p'))
+endfunction
+
+function! ExecuteColorCommand(command, file)
+  if has('gui_running')
+    exec a:command . ' --no-color ' . a:file
+  else
+    exec a:command . ' --color ' . a:file
+  end
 endfunction
 
 "
