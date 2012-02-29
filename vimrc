@@ -105,7 +105,6 @@ autocmd FileType diff,help syntax clear PoxySpaces
 " DISABLE THE TOOLBAR AND GO FULLSCREEN ON GUI
 "
 if has('gui_running')
-
   set guioptions=-t
   colorscheme gmolokai
 
@@ -120,13 +119,10 @@ if has('gui_running')
     set guifont=Consolas:h12
     autocmd GUIEnter * set fullscreen
   endif
-
 else
-
   set t_Co=256
   runtime! manual/guicolorscheme/plugin/guicolorscheme.vim
   GuiColorScheme gmolokai
-
 endif
 
 "
