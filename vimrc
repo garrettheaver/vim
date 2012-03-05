@@ -60,28 +60,34 @@ autocmd FileType cucumber setlocal spell spelllang=en_gb
 "
 " RUNNING TESTS
 "
-autocmd FileType ruby,eruby,haml map <buffer> <Leader>t :call RunRSpecTests()<CR>
-autocmd FileType cucumber map <buffer> <Leader>t :call RunCucumberTests()<CR>
+autocmd FileType ruby,eruby,haml,cucumber,yaml map <buffer> <leader>t :call RunTests()<CR>
 
-function! RunRSpecTests()
+function! RunTests()
   exec 'w'
   let path = expand('%:p')
 
-  " MAP LIB FILES TO UNIT SPECS
-  if path =~ '\/lib\/'
+  " DECIDE WHICH FILE TO RUN
+  if path =~ '\/spec\/'
+    let g:test_to_run = path
+  elseif path =~ '\/lib\/'
     let path = substitute(path, '\/lib\/', '/spec/lib/', '')
-    let g:spec = substitute(path, '\..\+$', '_spec.rb', '')
+    let g:test_to_run = substitute(path, '\..\+$', '_spec.rb', '')
   elseif path =~ '\/app\/'
     let path = substitute(path, '\/app\/', '/spec/', '')
-    let g:spec = substitute(path, '\..\+$', '_spec.rb', '')
+    let g:test_to_run = substitute(path, '\..\+$', '_spec.rb', '')
+  elseif path =~ '\/features\/.\+\.feature$'
+    let g:test_to_run = path
   endif
 
-  call ExecuteColorCommand('!rspec', g:spec)
+  call ExecuteTestCommand(g:test_to_run)
 endfunction
 
-function! RunCucumberTests()
-  exec 'w'
-  call ExecuteColorCommand('!cucumber', expand('%:p'))
+function! ExecuteTestCommand(path)
+  if a:path =~ '_spec\.rb$'
+    call ExecuteColorCommand('!rspec', a:path)
+  elseif a:path =~ '\.feature$'
+    call ExecuteColorCommand('!cucumber', a:path)
+  end
 endfunction
 
 function! ExecuteColorCommand(command, file)
