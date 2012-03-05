@@ -60,7 +60,7 @@ autocmd FileType cucumber setlocal spell spelllang=en_gb
 "
 " RUNNING TESTS
 "
-autocmd FileType ruby map <buffer> <Leader>t :call RunRSpecTests()<CR>
+autocmd FileType ruby,eruby,haml map <buffer> <Leader>t :call RunRSpecTests()<CR>
 autocmd FileType cucumber map <buffer> <Leader>t :call RunCucumberTests()<CR>
 
 function! RunRSpecTests()
@@ -68,12 +68,15 @@ function! RunRSpecTests()
   let path = expand('%:p')
 
   " MAP LIB FILES TO UNIT SPECS
-  if path =~ '\/lib\/.\+\.rb$'
-    let path = substitute(path, '\/lib\/', '/spec/unit/', '')
-    let path = substitute(path, '.rb$', '_spec.rb', '')
+  if path =~ '\/lib\/'
+    let path = substitute(path, '\/lib\/', '/spec/lib/', '')
+    let g:spec = substitute(path, '\..\+$', '_spec.rb', '')
+  elseif path =~ '\/app\/'
+    let path = substitute(path, '\/app\/', '/spec/', '')
+    let g:spec = substitute(path, '\..\+$', '_spec.rb', '')
   endif
 
-  call ExecuteColorCommand('!rspec', path)
+  call ExecuteColorCommand('!rspec', g:spec)
 endfunction
 
 function! RunCucumberTests()
