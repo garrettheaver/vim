@@ -70,8 +70,16 @@ function! RunTests()
   if path =~ '\/spec\/'
     let g:test_to_run = path
   elseif path =~ '\/lib\/'
-    let path = substitute(path, '\/lib\/', '/spec/lib/', '')
-    let g:test_to_run = substitute(path, '\..\+$', '_spec.rb', '')
+    let path = substitute(path, '\..\+$', '_spec.rb', '')
+    let non_lib_path = substitute(path, '\/lib\/', '/spec/', '')
+    let inc_lib_path = substitute(path, '\/lib\/', '/spec/lib/', '')
+
+    if filereadable(non_lib_path)
+      let g:test_to_run = non_lib_path
+    elseif filereadable(inc_lib_path)
+      let g:test_to_run = inc_lib_path
+    endif
+
   elseif path =~ '\/app\/'
     let path = substitute(path, '\/app\/', '/spec/', '')
     let g:test_to_run = substitute(path, '\..\+$', '_spec.rb', '')
