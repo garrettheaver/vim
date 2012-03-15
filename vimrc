@@ -1,5 +1,4 @@
 set nocompatible
-set noesckeys
 
 "
 " LOAD UP ADDITIONAL PLUGINS
@@ -139,6 +138,7 @@ if has('gui_running')
   endif
 else
   set t_Co=256
+  set noesckeys
   runtime! manual/guicolorscheme/plugin/guicolorscheme.vim
   GuiColorScheme gmolokai
 endif
