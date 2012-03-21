@@ -59,50 +59,70 @@ autocmd FileType cucumber setlocal spell spelllang=en_gb
 "
 " RUNNING TESTS
 "
-autocmd FileType ruby,eruby,haml,cucumber,yaml map <buffer> <leader>t :call RunTests()<CR>
+autocmd FileType ruby,eruby,haml,cucumber,yaml map <buffer> <leader>T :call SaveAndRunSpecs(expand('%:p'))<CR>
+autocmd FileType ruby,eruby,haml,cucumber,yaml map <buffer> <leader>t :call SaveAndRunSpecs(expand('%:p'), line('.'))<CR>
 
-function! RunTests()
+function! SaveAndRunSpecs(...)
   exec 'w'
-  let path = expand('%:p')
 
-  " DECIDE WHICH FILE TO RUN
-  if path =~ '\/spec\/'
-    let g:test_to_run = path
-  elseif path =~ '\/lib\/'
-    let path = substitute(path, '\..\+$', '_spec.rb', '')
-    let non_lib_path = substitute(path, '\/lib\/', '/spec/', '')
-    let inc_lib_path = substitute(path, '\/lib\/', '/spec/lib/', '')
+  let run_single_spec = exists('a:2')
+  let is_spec_file = IsSpecFile(a:1)
+  let infered_spec_file = is_spec_file ? a:1 : InferSpecFile(a:1)
 
-    if filereadable(non_lib_path)
-      let g:test_to_run = non_lib_path
-    elseif filereadable(inc_lib_path)
-      let g:test_to_run = inc_lib_path
-    endif
-
-  elseif path =~ '\/app\/'
-    let path = substitute(path, '\/app\/', '/spec/', '')
-    let g:test_to_run = substitute(path, '\..\+$', '_spec.rb', '')
-  elseif path =~ '\/features\/.\+\.feature$'
-    let g:test_to_run = path
+  if is_spec_file && run_single_spec
+    let g:spec_file_to_run = infered_spec_file
+    let g:spec_line_to_run = infered_spec_file . ':' . a:2
+    exec ExecuteSpecCommand(g:spec_line_to_run)
+  elseif exists('g:spec_line_to_run') && run_single_spec
+    exec ExecuteSpecCommand(g:spec_line_to_run)
+  elseif filereadable(infered_spec_file)
+    let g:spec_file_to_run = infered_spec_file
+    exec ExecuteSpecCommand(g:spec_file_to_run)
+  elseif exists('g:spec_file_to_run')
+    exec ExecuteSpecCommand(g:spec_file_to_run)
+  else
+    echoerr 'Unable to determine spec file'
   endif
 
-  call ExecuteTestCommand(g:test_to_run)
 endfunction
 
-function! ExecuteTestCommand(path)
-  if a:path =~ '_spec\.rb$'
-    call ExecuteColorCommand('!rspec', a:path)
-  elseif a:path =~ '\.feature$'
-    call ExecuteColorCommand('!cucumber', a:path)
-  end
+function! IsSpecFile(path)
+  return a:path =~ '\(_spec\.rb\|\.feature\)' ? 1 : 0
 endfunction
 
-function! ExecuteColorCommand(command, file)
-  if has('gui_running')
-    exec a:command . ' --no-color ' . a:file
-  else
-    exec a:command . ' --color ' . a:file
-  end
+function! ExecuteSpecCommand(path)
+  let binary = a:path =~ '_spec\.rb' ? '!rspec' : '!cucumber'
+  let options = has('gui_running') ? ' --no-color ' : ' --color '
+  exec binary . options . a:path
+endfunction
+
+" INFER A SPEC FILENAME FROM A SOURCE FILENAME
+function! InferSpecFile(path)
+
+  if a:path =~ '\/app\/'
+    " WE'RE INSIDE RAILS APP DIRECTORY
+    let spec = substitute(a:path, '\..\+$', '_spec.rb', '')
+    return substitute(spec, '\/app\/', '/spec/', '')
+  elseif a:path =~ '\/lib\/'
+    " WE'RE IN THE LIB DIRECTORY
+    let spec = substitute(a:path, '\..\+$', '_spec.rb', '')
+
+    " RAILS MAY USE spec/lib, GEMS USE spec/ ONLY
+    let non_lib_spec = substitute(spec, '\/lib\/', '/spec/', '')
+    let inc_lib_spec = substitute(spec, '\/lib\/', '/spec/lib/', '')
+
+    if filereadable(non_lib_path)
+      return non_lib_path
+    elseif filereadable(inc_lib_path)
+      return inc_lib_path
+    endif
+
+  endif
+
+endfunction
+
+" INFER A SOURCE FILENAME FROM A SPEC FILENAME
+function! InferSourceFile(path)
 endfunction
 
 "
@@ -159,12 +179,12 @@ endfunction
 " REMAPS
 "
 let mapleader=','
-map <silent> <leader>ff :call FormatFile()<CR>
-map <silent> <leader>fqa :%s/\"/\'/g<CR>
-map <silent> <leader>fqc :%s/\"/\'/gc<CR>
+map <silent> <leader>f :call FormatFile()<CR>
+map <silent> <leader>Q :%s/\"/\'/g<CR>
+map <silent> <leader>q :%s/\"/\'/gc<CR>
 map <silent> <leader>a= :Tabularize /=<CR>
 map <silent> <leader>a: :Tabularize /:\zs<CR>
-map <silent> <leader>ut :GundoToggle<CR>
+map <silent> <leader>u :GundoToggle<CR>
 
 "
 " Configure the FuzzyFileFinder
