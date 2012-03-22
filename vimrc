@@ -1,34 +1,38 @@
+"
+" BASIC OPTIONS
+"
 set nocompatible
+set hidden
+set number
+set ruler
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set autoindent
+set smartindent
+set noswapfile
+set nowrap
+set wildmode=list:longest
+set laststatus=2
+
+"
+" LEADER SETUP
+"
+let mapleader=','
 
 "
 " LOAD UP ADDITIONAL PLUGINS
 "
 silent! call pathogen#runtime_append_all_bundles()
 
-set hidden
-set number
-set ruler
-
+"
+" AUTO SYNTAX HIGHLIGHT
+"
 syntax enable
 filetype plugin indent on
 
-set wildmode=list:longest
-set laststatus=2
-
 "
-" DEFINE THE TAB OPTIONS
-"
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set autoindent
-set smartindent
-set nowrap
-
-set noswapfile
-
-"
-" DEFINE THE SPLIT OPTIONS
+" SPLIT OPTIONS
 "
 set splitright
 set splitbelow
@@ -59,8 +63,8 @@ autocmd FileType cucumber setlocal spell spelllang=en_gb
 "
 " RUNNING TESTS
 "
-autocmd FileType ruby,eruby,haml,cucumber,yaml map <buffer> <leader>T :call SaveAndRunSpecs(expand('%:p'))<CR>
-autocmd FileType ruby,eruby,haml,cucumber,yaml map <buffer> <leader>t :call SaveAndRunSpecs(expand('%:p'), line('.'))<CR>
+autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>T :call SaveAndRunSpecs(expand('%:p'))<CR>
+autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>t :call SaveAndRunSpecs(expand('%:p'), line('.'))<CR>
 
 function! SaveAndRunSpecs(...)
   exec 'w'
@@ -101,15 +105,11 @@ endfunction
 "
 function! InferSpecFile(path)
 
+  let spec = substitute(a:path, '\..\+$', '_spec.rb', '')
+
   if a:path =~ '\/app\/'
-    " WE'RE INSIDE RAILS APP DIRECTORY
-    let spec = substitute(a:path, '\..\+$', '_spec.rb', '')
     return substitute(spec, '\/app\/', '/spec/', '')
   elseif a:path =~ '\/lib\/'
-    " WE'RE IN THE LIB DIRECTORY
-    let spec = substitute(a:path, '\..\+$', '_spec.rb', '')
-
-    " RAILS MAY USE spec/lib, GEMS USE spec/ ONLY
     let non_lib_spec = substitute(spec, '\/lib\/', '/spec/', '')
     let inc_lib_spec = substitute(spec, '\/lib\/', '/spec/lib/', '')
 
@@ -118,7 +118,6 @@ function! InferSpecFile(path)
     elseif filereadable(inc_lib_path)
       return inc_lib_path
     endif
-
   endif
 
 endfunction
@@ -138,7 +137,6 @@ function! InferSourceFile(path)
     elseif filereadable(lib_path)
       return lib_path
     endif
-
   endif
 
 endfunction
@@ -146,7 +144,7 @@ endfunction
 "
 " JUMP TO SPEC FROM SOURCE AND VICE-VERSA
 "
-autocmd FileType ruby,eruby,haml,cucumber,yaml map <buffer> <leader>j :call JumpToReciprocal(expand('%:p'))<CR>
+autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>j :call JumpToReciprocal(expand('%:p'))<CR>
 
 function! JumpToReciprocal(path)
   let reciprocal = IsSpecFile(a:path) ? InferSourceFile(a:path) : InferSpecFile(a:path)
@@ -169,7 +167,7 @@ autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
 autocmd FileType diff,help syntax clear PoxySpaces
 
 "
-" DISABLE THE TOOLBAR AND GO FULLSCREEN ON GUI
+" DISABLE TOOLBAR AND GO FULLSCREEN ON GUI
 "
 if has('gui_running')
   set guioptions=-t
@@ -196,6 +194,8 @@ endif
 "
 " CUSTOM FORMAT FUNCTION
 "
+map <silent> <leader>f :call FormatFile()<CR>
+
 function! FormatFile()
   norm myHmz
   exec 'retab'
@@ -206,10 +206,8 @@ function! FormatFile()
 endfunction
 
 "
-" REMAPS
+" OTHER REMAPS
 "
-let mapleader=','
-map <silent> <leader>f :call FormatFile()<CR>
 map <silent> <leader>Q :%s/\"/\'/g<CR>
 map <silent> <leader>q :%s/\"/\'/gc<CR>
 map <silent> <leader>a= :Tabularize /=<CR>
@@ -217,8 +215,12 @@ map <silent> <leader>a: :Tabularize /:\zs<CR>
 map <silent> <leader>u :GundoToggle<CR>
 
 "
-" Configure the FuzzyFileFinder
+" CONFIGURE FUZZYFINDER
 "
+map <silent> <leader>e :call FufOpenCurrent()<CR>
+map <silent> <leader>v :call FufOpenVsplit()<CR>
+map <silent> <leader>h :call FufOpenHsplit()<CR>
+
 function! FufOpenCurrent()
   let g:fuf_keyOpen='<CR>'
   let g:fuf_keyOpenVsplit=''
@@ -242,10 +244,6 @@ function! FufOpenHsplit()
   exec 'FufRenewCache'
   exec 'FufCoverageFile'
 endfunction
-
-map <silent> <leader>e :call FufOpenCurrent()<CR>
-map <silent> <leader>v :call FufOpenVsplit()<CR>
-map <silent> <leader>h :call FufOpenHsplit()<CR>
 
 "
 " SESSION SAVE AND RESTORE
