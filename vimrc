@@ -96,7 +96,9 @@ function! ExecuteSpecCommand(path)
   exec binary . options . a:path
 endfunction
 
+"
 " INFER A SPEC FILENAME FROM A SOURCE FILENAME
+"
 function! InferSpecFile(path)
 
   if a:path =~ '\/app\/'
@@ -121,8 +123,36 @@ function! InferSpecFile(path)
 
 endfunction
 
+"
 " INFER A SOURCE FILENAME FROM A SPEC FILENAME
+"
 function! InferSourceFile(path)
+
+  if a:path =~ '\/spec\/'
+    let source = substitute(a:path, '_spec\.rb$', '.rb', '')
+    let app_path = substitute(source, '\/spec\/', '/app/', '')
+    let lib_path = substitute(source, '\/spec\(\/lib\)?\/', '/lib/', '')
+
+    if filereadable(app_path)
+      return app_path
+    elseif filereadable(lib_path)
+      return lib_path
+    endif
+
+  endif
+
+endfunction
+
+"
+" JUMP TO SPEC FROM SOURCE AND VICE-VERSA
+"
+autocmd FileType ruby,eruby,haml,cucumber,yaml map <buffer> <leader>j :call JumpToReciprocal(expand('%:p'))<CR>
+
+function! JumpToReciprocal(path)
+  let reciprocal = IsSpecFile(a:path) ? InferSourceFile(a:path) : InferSpecFile(a:path)
+  if filereadable(reciprocal)
+    call fuf#openFile(reciprocal, 2, 1)
+  endif
 endfunction
 
 "
