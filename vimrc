@@ -63,8 +63,8 @@ autocmd FileType cucumber setlocal spell spelllang=en_gb
 "
 " RUNNING TESTS
 "
-autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>T :call SaveAndRunSpecs(expand('%:p'))<CR>
-autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>t :call SaveAndRunSpecs(expand('%:p'), line('.'))<CR>
+autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>t :call SaveAndRunSpecs(expand('%:p'))<CR>
+autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>T :call SaveAndRunSpecs(expand('%:p'), line('.'))<CR>
 
 function! SaveAndRunSpecs(...)
   exec 'w'
