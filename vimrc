@@ -113,10 +113,10 @@ function! InferSpecFile(path)
     let non_lib_spec = substitute(spec, '\/lib\/', '/spec/', '')
     let inc_lib_spec = substitute(spec, '\/lib\/', '/spec/lib/', '')
 
-    if filereadable(non_lib_path)
-      return non_lib_path
-    elseif filereadable(inc_lib_path)
-      return inc_lib_path
+    if filereadable(non_lib_spec)
+      return non_lib_spec
+    elseif filereadable(inc_lib_spec)
+      return inc_lib_spec
     endif
   endif
 
