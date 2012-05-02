@@ -9,7 +9,7 @@ snippet	timestamp
 	END;
 	$$ LANGUAGE plpgsql VOLATILE;
 
-snippet	table
+snippet	ttable
 	--
 	-- $1
 	--
@@ -26,6 +26,20 @@ snippet	table
 	CREATE TRIGGER tg_$1_timestamp
 	BEFORE UPDATE ON $1 FOR EACH ROW
 	EXECUTE PROCEDURE fn_timestamp();
+
+snippet	ntable
+	--
+	-- $1
+	--
+	CREATE SEQUENCE sq_$1;
+
+	CREATE TABLE ${1:}
+	(
+		id int NOT NULL DEFAULT nextval('sq_$1'),${2}
+		created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		CONSTRAINT pk_$1 PRIMARY KEY (id)
+	);
 
 snippet	foreign
 	ALTER TABLE $1
