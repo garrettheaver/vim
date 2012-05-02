@@ -85,7 +85,7 @@ function! SaveAndRunSpecs(...)
   elseif exists('g:spec_file_to_run')
     exec ExecuteSpecCommand(g:spec_file_to_run)
   else
-    echoerr 'Unable to determine spec file'
+    return
   endif
 
 endfunction
