@@ -40,3 +40,6 @@
 [submodule "manual/guicolorscheme"]
 	path = manual/guicolorscheme
 	url = https://github.com/vim-scripts/guicolorscheme.vim
+[submodule "bundle/rename"]
+	path = bundle/rename
+	url = https://github.com/vim-scripts/Rename.git

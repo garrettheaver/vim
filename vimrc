@@ -215,6 +215,12 @@ map <silent> <leader>a: :Tabularize /:\zs<CR>
 map <silent> <leader>u :GundoToggle<CR>
 
 "
+" COMMAND ALIASES
+"
+command -nargs=* -complete=file -bang MoveTo call Rename(<q-args>, '<bang>')
+cabbrev mv <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'MoveTo' : 'mv')<CR>
+
+"
 " CONFIGURE FUZZYFINDER
 "
 map <silent> <leader>e :call FufOpenCurrent()<CR>
@@ -249,4 +255,4 @@ endfunction
 " SESSION SAVE AND RESTORE
 "
 map <silent> <leader>ss :mksession! .session<CR>
-map <silent> <leader>rs :source .session<CR><C-w>=<CR>
+map <silent> <leader>rs :source .session<CR>
