@@ -76,14 +76,14 @@ function! SaveAndRunSpecs(...)
   if is_spec_file && run_single_spec
     let g:spec_file_to_run = infered_spec_file
     let g:spec_line_to_run = infered_spec_file . ':' . a:2
-    exec ExecuteSpecCommand(g:spec_line_to_run)
+    call ExecuteSpecCommand(g:spec_line_to_run)
   elseif exists('g:spec_line_to_run') && run_single_spec
-    exec ExecuteSpecCommand(g:spec_line_to_run)
+    call ExecuteSpecCommand(g:spec_line_to_run)
   elseif filereadable(infered_spec_file)
     let g:spec_file_to_run = infered_spec_file
-    exec ExecuteSpecCommand(g:spec_file_to_run)
+    call ExecuteSpecCommand(g:spec_file_to_run)
   elseif exists('g:spec_file_to_run')
-    exec ExecuteSpecCommand(g:spec_file_to_run)
+    call ExecuteSpecCommand(g:spec_file_to_run)
   else
     return
   endif
