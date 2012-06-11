@@ -166,6 +166,8 @@ autocmd Syntax * syn match PoxySpaces /\s\+$/ containedin=ALL
 autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
 autocmd FileType diff,help syntax clear PoxySpaces
 
+map <silent> <leader>l :set list!<CR>
+
 "
 " DISABLE TOOLBAR AND GO FULLSCREEN ON GUI
 "
