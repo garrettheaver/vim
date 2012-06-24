@@ -24,6 +24,7 @@ let mapleader=','
 " LOAD UP ADDITIONAL PLUGINS
 "
 silent! call pathogen#runtime_append_all_bundles()
+runtime ftplugin/man.vim
 
 "
 " AUTO SYNTAX HIGHLIGHT
@@ -159,12 +160,12 @@ endfunction
 highlight PoxyTabs ctermbg=cyan guibg=cyan
 autocmd Syntax * syn match PoxyTabs /\t/ containedin=ALL
 autocmd ColorScheme * highlight PoxyTabs ctermbg=cyan guibg=cyan
-autocmd FileType diff,help syntax clear PoxyTabs
+autocmd FileType diff,help,man syntax clear PoxyTabs
 
 highlight PoxySpaces ctermbg=red guibg=red
 autocmd Syntax * syn match PoxySpaces /\s\+$/ containedin=ALL
 autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
-autocmd FileType diff,help syntax clear PoxySpaces
+autocmd FileType diff,help,man syntax clear PoxySpaces
 
 map <silent> <leader>l :set list!<CR>
 
