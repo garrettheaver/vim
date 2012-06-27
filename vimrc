@@ -209,6 +209,11 @@ function! FormatFile()
 endfunction
 
 "
+" AUTO CREATE DIRECTORIES ON SAVE
+"
+autocmd BufWritePre * if expand("<afile>")!~#'^\w\+:/' && !isdirectory(expand("%:h")) | execute "silent! !mkdir -p ".shellescape(expand('%:h'), 1) | redraw! | endif
+
+"
 " OTHER REMAPS
 "
 map <silent> <leader>Q :%s/\"/\'/g<CR>
