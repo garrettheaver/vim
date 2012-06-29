@@ -40,6 +40,10 @@ set foldminlines=1
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 
+""" SET SOME FILETYPES BASED ON NAME
+autocmd BufNewFile,BufRead Gemfile set filetype=ruby
+autocmd BufNewFile,BufRead Guardfile set filetype=ruby
+
 """ SET SPELL CHECKING
 autocmd FileType cucumber,markdown setlocal spell spelllang=en_gb
 
