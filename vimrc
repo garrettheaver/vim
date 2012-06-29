@@ -96,9 +96,9 @@ function! IsSpecFile(path)
 endfunction
 
 function! ExecuteSpecCommand(path)
-  let binary = a:path =~ '_spec\.rb' ? '!rspec' : '!cucumber'
+  let binary = a:path =~ '_spec\.rb' ? 'rspec' : 'cucumber'
   let options = has('gui_running') ? ' --no-color ' : ' --color '
-  exec binary . options . a:path
+  exec '!bundle exec ' . binary . options . a:path
 endfunction
 
 "
