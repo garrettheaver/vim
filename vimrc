@@ -1,6 +1,4 @@
-"
-" BASIC OPTIONS
-"
+""" BASIC OPTIONS
 set nocompatible
 set hidden
 set number
@@ -15,55 +13,37 @@ set nowrap
 set wildmode=list:longest
 set laststatus=2
 
-"
-" LEADER SETUP
-"
+""" LEADER SETUP
 let mapleader=','
 
-"
-" LOAD UP ADDITIONAL PLUGINS
-"
+""" LOAD UP ADDITIONAL PLUGINS
 silent! call pathogen#runtime_append_all_bundles()
 runtime ftplugin/man.vim
 
-"
-" AUTO SYNTAX HIGHLIGHT
-"
+""" AUTO SYNTAX HIGHLIGHT
 syntax enable
 filetype plugin indent on
 
-"
-" SPLIT OPTIONS
-"
+""" SPLIT OPTIONS
 set splitright
 set splitbelow
 
-"
-" HIGHLIGHT SEARCHES
-"
+""" HIGHLIGHT SEARCHES
 set incsearch
 
-"
-" SET THE CODE FOLDING OPTIONS
-"
+""" SET THE CODE FOLDING OPTIONS
 set foldmethod=syntax
 set foldlevel=1
 set foldminlines=1
 
-"
-" SYNTAX FOLD XML
-"
+""" SYNTAX FOLD XML
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 
-"
-" SET SPELL CHECKING
-"
+""" SET SPELL CHECKING
 autocmd FileType cucumber,markdown setlocal spell spelllang=en_gb
 
-"
-" RUNNING TESTS
-"
+""" RUNNING TESTS
 autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>t :call SaveAndRunSpecs(expand('%:p'))<CR>
 autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>T :call SaveAndRunSpecs(expand('%:p'), line('.'))<CR>
 
@@ -101,9 +81,7 @@ function! ExecuteSpecCommand(path)
   exec '!bundle exec ' . binary . options . a:path
 endfunction
 
-"
-" INFER A SPEC FILENAME FROM A SOURCE FILENAME
-"
+""" INFER A SPEC FILENAME FROM A SOURCE FILENAME
 function! InferSpecFile(path)
 
   let spec = substitute(a:path, '\..\+$', '_spec.rb', '')
@@ -123,9 +101,7 @@ function! InferSpecFile(path)
 
 endfunction
 
-"
-" INFER A SOURCE FILENAME FROM A SPEC FILENAME
-"
+""" INFER A SOURCE FILENAME FROM A SPEC FILENAME
 function! InferSourceFile(path)
 
   if a:path =~ '\/spec\/'
@@ -142,9 +118,7 @@ function! InferSourceFile(path)
 
 endfunction
 
-"
-" JUMP TO SPEC FROM SOURCE AND VICE-VERSA
-"
+""" JUMP TO SPEC FROM SOURCE AND VICE-VERSA
 autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>j :call JumpToReciprocal(expand('%:p'))<CR>
 
 function! JumpToReciprocal(path)
@@ -154,9 +128,7 @@ function! JumpToReciprocal(path)
   endif
 endfunction
 
-"
-" SET WHITESPACE HIGHLIGHT
-"
+""" SET WHITESPACE HIGHLIGHT
 highlight PoxyTabs ctermbg=cyan guibg=cyan
 autocmd Syntax * syn match PoxyTabs /\t/ containedin=ALL
 autocmd ColorScheme * highlight PoxyTabs ctermbg=cyan guibg=cyan
@@ -167,11 +139,11 @@ autocmd Syntax * syn match PoxySpaces /\s\+$/ containedin=ALL
 autocmd ColorScheme * highlight PoxySpaces ctermbg=red guibg=red
 autocmd FileType diff,help,man syntax clear PoxySpaces
 
+""" CUSTOM LEADER MAPS
 map <silent> <leader>l :set list!<CR>
+map <silent> <leader>n :NumbersToggle<CR>
 
-"
-" DISABLE TOOLBAR AND GO FULLSCREEN ON GUI
-"
+""" DISABLE TOOLBAR AND GO FULLSCREEN ON GUI
 if has('gui_running')
   set guioptions=-t
   colorscheme gmolokai
@@ -194,9 +166,7 @@ else
   GuiColorScheme gmolokai
 endif
 
-"
-" CUSTOM FORMAT FUNCTION
-"
+""" CUSTOM FORMAT FUNCTION
 map <silent> <leader>f :call FormatFile()<CR>
 
 function! FormatFile()
@@ -208,29 +178,21 @@ function! FormatFile()
   redraw!
 endfunction
 
-"
-" AUTO CREATE DIRECTORIES ON SAVE
-"
+""" AUTO CREATE DIRECTORIES ON SAVE
 autocmd BufWritePre * if expand("<afile>")!~#'^\w\+:/' && !isdirectory(expand("%:h")) | execute "silent! !mkdir -p ".shellescape(expand('%:h'), 1) | redraw! | endif
 
-"
-" OTHER REMAPS
-"
+""" OTHER REMAPS
 map <silent> <leader>Q :%s/\"/\'/g<CR>
 map <silent> <leader>q :%s/\"/\'/gc<CR>
 map <silent> <leader>a= :Tabularize /=<CR>
 map <silent> <leader>a: :Tabularize /:\zs<CR>
 map <silent> <leader>u :GundoToggle<CR>
 
-"
-" COMMAND ALIASES
-"
+""" COMMAND ALIASES
 command -nargs=* -complete=file -bang MoveTo call Rename(<q-args>, '<bang>')
 cabbrev mv <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'MoveTo' : 'mv')<CR>
 
-"
-" CONFIGURE FUZZYFINDER
-"
+""" CONFIGURE FUZZYFINDER
 map <silent> <leader>e :call FufOpenCurrent()<CR>
 map <silent> <leader>v :call FufOpenVsplit()<CR>
 map <silent> <leader>h :call FufOpenHsplit()<CR>
@@ -259,8 +221,6 @@ function! FufOpenHsplit()
   exec 'FufCoverageFile'
 endfunction
 
-"
-" SESSION SAVE AND RESTORE
-"
+""" SESSION SAVE AND RESTORE
 map <silent> <leader>ss :mksession! .session<CR>
 map <silent> <leader>rs :source .session<CR>
