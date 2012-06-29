@@ -43,3 +43,6 @@
 [submodule "bundle/rename"]
 	path = bundle/rename
 	url = https://github.com/vim-scripts/Rename.git
+[submodule "bundle/vim-powerline"]
+	path = bundle/vim-powerline
+	url = https://github.com/Lokaltog/vim-powerline.git
