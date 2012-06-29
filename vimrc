@@ -16,8 +16,32 @@ set laststatus=2
 """ LEADER SETUP
 let mapleader=','
 
+""" SET THE COLORSCHEME AND GO FULLSCREEN
+if has('gui_running')
+  set guioptions=-t
+  colorscheme gmolokai
+
+  if has('gui_win32')
+    autocmd GUIEnter * :simalt ~x
+    set guifont=Consolas:h10
+    set backspace=2
+  end
+
+  if has('gui_macvim')
+    set columns=999
+    set guifont=Consolas:h12
+    autocmd GUIEnter * set fullscreen
+  endif
+else
+  set t_Co=256
+  set noesckeys
+  runtime! manual/guicolorscheme/plugin/guicolorscheme.vim
+  GuiColorScheme gmolokai
+endif
+
 """ LOAD UP ADDITIONAL PLUGINS
 silent! call pathogen#runtime_append_all_bundles()
+silent! call pathogen#helptags()
 runtime ftplugin/man.vim
 
 """ AUTO SYNTAX HIGHLIGHT
@@ -146,29 +170,6 @@ autocmd FileType diff,help,man syntax clear PoxySpaces
 """ CUSTOM LEADER MAPS
 map <silent> <leader>l :set list!<CR>
 map <silent> <leader>n :NumbersToggle<CR>
-
-""" DISABLE TOOLBAR AND GO FULLSCREEN ON GUI
-if has('gui_running')
-  set guioptions=-t
-  colorscheme gmolokai
-
-  if has('gui_win32')
-    autocmd GUIEnter * :simalt ~x
-    set guifont=Consolas:h10
-    set backspace=2
-  end
-
-  if has('gui_macvim')
-    set columns=999
-    set guifont=Consolas:h12
-    autocmd GUIEnter * set fullscreen
-  endif
-else
-  set t_Co=256
-  set noesckeys
-  runtime! manual/guicolorscheme/plugin/guicolorscheme.vim
-  GuiColorScheme gmolokai
-endif
 
 """ CUSTOM FORMAT FUNCTION
 map <silent> <leader>f :call FormatFile()<CR>
