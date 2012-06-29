@@ -59,7 +59,7 @@ autocmd FileType xml setlocal foldmethod=syntax
 "
 " SET SPELL CHECKING
 "
-autocmd FileType cucumber setlocal spell spelllang=en_gb
+autocmd FileType cucumber,markdown setlocal spell spelllang=en_gb
 
 "
 " RUNNING TESTS
