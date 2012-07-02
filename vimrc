@@ -1,7 +1,7 @@
 """ BASIC OPTIONS
 set nocompatible
 set hidden
-set number
+set relativenumber
 set ruler
 set expandtab
 set tabstop=2
@@ -169,7 +169,8 @@ autocmd FileType diff,help,man syntax clear PoxySpaces
 
 """ CUSTOM LEADER MAPS
 map <silent> <leader>l :set list!<CR>
-map <silent> <leader>n :NumbersToggle<CR>
+map <silent> <leader>n :set number<CR>
+map <silent> <leader>N :set relativenumber<CR>
 
 """ CUSTOM FORMAT FUNCTION
 map <silent> <leader>f :call FormatFile()<CR>
