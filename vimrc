@@ -57,7 +57,7 @@ set incsearch
 
 """ SET THE CODE FOLDING OPTIONS
 set foldmethod=syntax
-set foldlevel=1
+set foldlevel=3
 set foldminlines=1
 
 """ SYNTAX FOLD XML
