@@ -40,13 +40,16 @@ else
 endif
 
 """ LOAD UP ADDITIONAL PLUGINS
+filetype off
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
 runtime ftplugin/man.vim
 
 """ AUTO SYNTAX HIGHLIGHT
 syntax enable
-filetype plugin indent on
+filetype indent on
+filetype plugin on
+compiler ruby
 
 """ SPLIT OPTIONS
 set splitright
@@ -233,5 +236,5 @@ map <silent> <leader>rs :source .session<CR>
 
 """ WHATS THAT SYNTAX GROUP
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-  \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-  \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

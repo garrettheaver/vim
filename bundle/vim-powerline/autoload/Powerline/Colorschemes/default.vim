@@ -42,7 +42,7 @@ call Pl#Hi#Allocate({
 let g:Powerline#Colorschemes#default#colorscheme = Pl#Colorscheme#Init([
 	\ Pl#Hi#Segments(['SPLIT'], {
 		\ 'n': ['white', 'gray2'],
-		\ 'N': ['white', 'gray1'],
+		\ 'N': ['white', 'gray0'],
 		\ 'i': ['white', 'darkestblue'],
 		\ }),
 	\
@@ -62,7 +62,7 @@ let g:Powerline#Colorschemes#default#colorscheme = Pl#Colorscheme#Init([
 	\
 	\ Pl#Hi#Segments(['fileinfo', 'filename'], {
 		\ 'n': ['white', 'gray4', ['bold']],
-		\ 'N': ['gray7', 'gray1', ['bold']],
+		\ 'N': ['gray7', 'gray0', ['bold']],
 		\ 'i': ['white', 'darkblue', ['bold']],
 		\ }),
 	\
