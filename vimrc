@@ -12,6 +12,7 @@ set noswapfile
 set nowrap
 set wildmode=list:longest
 set laststatus=2
+set backspace=indent,eol,start
 
 """ LEADER SETUP
 let mapleader=','
@@ -127,6 +128,8 @@ function! InferSpecFile(path)
       return non_lib_spec
     elseif filereadable(inc_lib_spec)
       return inc_lib_spec
+    else
+      echoerr 'Unable to infer path for spec file'
     endif
   endif
 
@@ -138,12 +141,14 @@ function! InferSourceFile(path)
   if a:path =~ '\/spec\/'
     let source = substitute(a:path, '_spec\.rb$', '.rb', '')
     let app_path = substitute(source, '\/spec\/', '/app/', '')
-    let lib_path = substitute(source, '\/spec\(\/lib\)?\/', '/lib/', '')
+    let lib_path = substitute(source, '\/spec\(\/lib\)\?\/', '/lib/', '')
 
     if filereadable(app_path)
       return app_path
     elseif filereadable(lib_path)
       return lib_path
+    else
+      echoerr 'Unable to infer path for source file'
     endif
   endif
 
