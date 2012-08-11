@@ -52,6 +52,12 @@ filetype indent on
 filetype plugin on
 compiler ruby
 
+""" ENABLE PARENTHESIS COLORS
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 """ SPLIT OPTIONS
 set splitright
 set splitbelow
