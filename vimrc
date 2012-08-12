@@ -166,7 +166,7 @@ autocmd FileType ruby,eruby,haml,cucumber,yaml map <silent> <buffer> <leader>j :
 function! JumpToReciprocal(path)
   let reciprocal = IsSpecFile(a:path) ? InferSourceFile(a:path) : InferSpecFile(a:path)
   if filereadable(reciprocal)
-    call fuf#openFile(reciprocal, 2, 1)
+    call fuf#openFile(reciprocal, 3, 1)
   endif
 endfunction
 
