@@ -53,10 +53,10 @@ filetype plugin on
 compiler ruby
 
 """ ENABLE PARENTHESIS COLORS
+au Syntax ruby RainbowParenthesesLoadRound
+au Syntax ruby RainbowParenthesesLoadSquare
+au Syntax ruby RainbowParenthesesLoadBraces
 au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 
 """ SPLIT OPTIONS
 set splitright
