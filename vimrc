@@ -170,6 +170,20 @@ function! JumpToReciprocal(path)
   endif
 endfunction
 
+""" SET AND UNSET SPEC FOCUS
+autocmd FileType ruby map <silent> <buffer> <leader>sf :call ToggleSpecFocus()<CR>
+
+function! ToggleSpecFocus()
+  let rexp = ', :focus => true do'
+  let line = getline('.')
+
+  if line =~ rexp . '$'
+    call setline('.', substitute(line, rexp, ' do', ''))
+  else
+    call setline('.', substitute(line, ' do$', rexp, ''))
+  end
+endfunction
+
 """ SET WHITESPACE HIGHLIGHT
 highlight PoxyTabs ctermbg=cyan guibg=cyan
 autocmd Syntax * syn match PoxyTabs /\t/ containedin=ALL
