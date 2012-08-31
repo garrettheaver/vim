@@ -70,6 +70,9 @@ set foldmethod=syntax
 set foldlevel=3
 set foldminlines=1
 
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
 """ SYNTAX FOLD XML
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
