@@ -221,9 +221,6 @@ autocmd BufWritePre * if expand("<afile>")!~#'^\w\+:/' && !isdirectory(expand("%
 """ OTHER REMAPS
 map <silent> <leader>Q :%s/\"/\'/g<CR>
 map <silent> <leader>q :%s/\"/\'/gc<CR>
-map <silent> <leader>a= :Tabularize /=<CR>
-map <silent> <leader>a: :Tabularize /:\zs<CR>
-map <silent> <leader>u :GundoToggle<CR>
 
 """ COMMAND ALIASES
 command -nargs=* -complete=file -bang MoveTo call Rename(<q-args>, '<bang>')
