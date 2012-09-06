@@ -1,7 +1,7 @@
 """ BASIC OPTIONS
 set nocompatible
 set hidden
-set relativenumber
+set number
 set ruler
 set expandtab
 set tabstop=2
