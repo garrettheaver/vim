@@ -18,22 +18,7 @@ set backspace=indent,eol,start
 let mapleader=','
 
 """ SET THE COLORSCHEME AND GO FULLSCREEN
-if has('gui_running')
-  set guioptions=-t
-  colorscheme gmolokai
-
-  if has('gui_win32')
-    autocmd GUIEnter * :simalt ~x
-    set guifont=Consolas:h10
-    set backspace=2
-  end
-
-  if has('gui_macvim')
-    set columns=999
-    set guifont=Consolas:h12
-    autocmd GUIEnter * set fullscreen
-  endif
-else
+if !has('gui_running')
   set t_Co=256
   set noesckeys
   runtime! manual/guicolorscheme/plugin/guicolorscheme.vim
@@ -254,6 +239,23 @@ function! FufOpenHsplit()
   exec 'FufRenewCache'
   exec 'FufCoverageFile'
 endfunction
+
+if has('gui_running')
+  set guioptions=-t
+  colorscheme gmolokai
+
+  if has('gui_win32')
+    autocmd GUIEnter * :simalt ~x
+    set guifont=Consolas:h10
+    set backspace=2
+  end
+
+  if has('gui_macvim')
+    set guifont=Consolas:h12
+    autocmd GUIEnter * set fullscreen
+    set columns=999
+  endif
+endif
 
 """ SESSION SAVE AND RESTORE
 map <silent> <leader>ss :mksession! .session<CR>
