@@ -17,10 +17,11 @@ snippet	ttable
 
 	CREATE TABLE ${1:}
 	(
-		id int NOT NULL DEFAULT nextval('sq_$1'),${2}
+		id int NOT NULL DEFAULT nextval('sq_$1'),
+		CONSTRAINT pk_$1 PRIMARY KEY (id),
 		created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		CONSTRAINT pk_$1 PRIMARY KEY (id)
+		${2}
 	);
 
 	CREATE TRIGGER tg_$1_timestamp
@@ -35,11 +36,29 @@ snippet	ntable
 
 	CREATE TABLE ${1:}
 	(
-		id int NOT NULL DEFAULT nextval('sq_$1'),${2}
+		id int NOT NULL DEFAULT nextval('sq_$1'),
+		CONSTRAINT pk_$1 PRIMARY KEY (id),
 		created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		CONSTRAINT pk_$1 PRIMARY KEY (id)
+		${2}
 	);
+
+snippet	itable
+	--
+	-- $1
+	--
+	CREATE TABLE ${1:}
+	(
+		id int NOT NULL,
+		CONSTRAINT pk_$1 PRIMARY KEY (id),
+		created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		${2}
+	);
+
+	CREATE TRIGGER tg_$1_timestamp
+	BEFORE UPDATE ON $1 FOR EACH ROW
+	EXECUTE PROCEDURE fn_timestamp();
 
 snippet	foreign
 	ALTER TABLE $1
