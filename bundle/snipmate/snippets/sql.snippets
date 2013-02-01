@@ -66,10 +66,18 @@ snippet	foreign
 	FOREIGN KEY ($2) REFERENCES ${3:} (${4:id})
 	ON DELETE ${5:CASCADE};
 
-snippet	index
+snippet	nindex
 	CREATE INDEX ix_${1:}_${2:}
 	ON $1 ($2);
 
-snippet	unique
+snippet	uindex
 	CREATE UNIQUE INDEX ux_${1:}_${2:}
 	ON $1 ($2);
+
+snippet	gindex
+	CREATE INDEX gx_${1:}_${2:}
+	ON $1 USING GIST ($2);
+
+snippet	vindex
+	CREATE INDEX vx_${1:}_${2:}
+	ON $1 USING GIN ($2);
