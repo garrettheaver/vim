@@ -60,6 +60,17 @@ snippet	itable
 	BEFORE UPDATE ON $1 FOR EACH ROW
 	EXECUTE PROCEDURE fn_timestamp();
 
+snippet stable
+	--
+	-- $1
+	--
+	CREATE TABLE ${1:}
+	(
+		id int NOT NULL,
+		CONSTRAINT pk_$1 PRIMARY KEY (id),
+		${2}
+	);
+
 snippet	foreign
 	ALTER TABLE $1
 	ADD CONSTRAINT fk_${1:}_${2:}
