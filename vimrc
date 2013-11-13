@@ -21,7 +21,7 @@ let mapleader=','
 if !has('gui_running')
   set t_Co=256
   set noesckeys
-  runtime! manual/guicolorscheme/plugin/guicolorscheme.vim
+  runtime! bundle/guicolorscheme.vim/plugin/guicolorscheme.vim
   GuiColorScheme gmolokai
 endif
 
