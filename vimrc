@@ -110,7 +110,7 @@ endfunction
 """ INFER A SPEC FILENAME FROM A SOURCE FILENAME
 function! InferSpecFile(path)
 
-  let spec = substitute(a:path, '\..\+$', '_spec.rb', '')
+  let spec = substitute(a:path, '\.rb', '_spec.rb', '')
 
   if a:path =~ '\/app\/'
     return substitute(spec, '\/app\/', '/spec/', '')
