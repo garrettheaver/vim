@@ -134,7 +134,7 @@ function! InferSourceFile(path)
 
   if a:path =~ '\/spec\/'
     let source = substitute(a:path, '_spec\.rb$', '.rb', '')
-    let app_path = substitute(source, '\/spec\/', '/app/', '')
+    let app_path = substitute(source, '\/spec\(\/app\)\?\/', '/app/', '')
     let lib_path = substitute(source, '\/spec\(\/lib\)\?\/', '/lib/', '')
 
     if filereadable(app_path)
