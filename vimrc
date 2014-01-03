@@ -63,7 +63,7 @@ let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 
 """ FIX HTML INDENT
-let g:html_indent_inctags="html,body,head,tbody,p"
+let g:html_indent_inctags="html,body,head,tbody,p,li"
 
 """ SET SOME FILETYPES BASED ON NAME
 autocmd BufNewFile,BufRead Gemfile set filetype=ruby
