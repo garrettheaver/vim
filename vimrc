@@ -215,6 +215,8 @@ command -nargs=* -complete=file -bang MoveTo call Rename(<q-args>, '<bang>')
 cabbrev mv <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'MoveTo' : 'mv')<CR>
 
 """ CONFIGURE FUZZYFINDER
+let g:fuf_coveragefile_exclude = '\v(\~$|\.o$|\.png$|\.jpg$|\.gif$|\.svg$|\.exe$|\.bak$|\.swp$|\.class)$'
+
 map <silent> <leader>e :call FufOpenCurrent()<CR>
 map <silent> <leader>v :call FufOpenVsplit()<CR>
 map <silent> <leader>h :call FufOpenHsplit()<CR>
