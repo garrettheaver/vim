@@ -65,6 +65,9 @@ autocmd FileType xml setlocal foldmethod=syntax
 """ FIX HTML INDENT
 let g:html_indent_inctags="html,body,head,tbody,script,p,li"
 
+""" DISABLE JSON QUOTE CONCEALING
+let g:vim_json_syntax_conceal = 0
+
 """ SET SOME FILETYPES BASED ON NAME
 autocmd BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd BufNewFile,BufRead Guardfile set filetype=ruby
