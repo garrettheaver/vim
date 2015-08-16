@@ -9,7 +9,7 @@ snippet	timestamp
 	END;
 	$$ LANGUAGE plpgsql VOLATILE;
 
-snippet	ttable
+snippet	ntable
 	--
 	-- $1
 	--
@@ -27,36 +27,6 @@ snippet	ttable
 	CREATE TRIGGER tg_$1_timestamp
 	BEFORE UPDATE ON $1 FOR EACH ROW
 	EXECUTE PROCEDURE fn_timestamp();
-
-snippet	ntable
-	--
-	-- $1
-	--
-	CREATE SEQUENCE sq_$1;
-
-	CREATE TABLE ${1:}
-	(
-		id int NOT NULL DEFAULT nextval('sq_$1'),
-		CONSTRAINT pk_$1 PRIMARY KEY (id),
-		created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		${2}
-	);
-
-snippet	sntable
-	--
-	-- $1.$2
-	--
-	CREATE SEQUENCE $1.sq_$2;
-
-	CREATE TABLE ${1:}.${2:}
-	(
-		id int NOT NULL DEFAULT nextval('$1.sq_$2'),
-		CONSTRAINT pk_$2 PRIMARY KEY (id),
-		created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		${3}
-	);
 
 snippet	itable
 	--
@@ -75,16 +45,22 @@ snippet	itable
 	BEFORE UPDATE ON $1 FOR EACH ROW
 	EXECUTE PROCEDURE fn_timestamp();
 
-snippet stable
+snippet utable
 	--
 	-- $1
 	--
 	CREATE TABLE ${1:}
 	(
-		id int NOT NULL,
+		id uuid NOT NULL DEFAULT uuid_generate_v4(),
 		CONSTRAINT pk_$1 PRIMARY KEY (id),
+		created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		${2}
 	);
+
+	CREATE TRIGGER tg_$1_timestamp
+	BEFORE UPDATE ON $1 FOR EACH ROW
+	EXECUTE PROCEDURE fn_timestamp();
 
 snippet	foreign
 	ALTER TABLE $1
