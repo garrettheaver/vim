@@ -71,6 +71,7 @@ let g:vim_json_syntax_conceal = 0
 """ SET SOME FILETYPES BASED ON NAME
 autocmd BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd BufNewFile,BufRead Guardfile set filetype=ruby
+autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 
 """ SET SPELL CHECKING
 autocmd FileType cucumber,markdown setlocal spell spelllang=en_gb
@@ -218,7 +219,7 @@ command -nargs=* -complete=file -bang MoveTo call Rename(<q-args>, '<bang>')
 cabbrev mv <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'MoveTo' : 'mv')<CR>
 
 """ CONFIGURE FUZZYFINDER
-let g:fuf_coveragefile_exclude = '\v(\~$|\.o$|\.png$|\.jpg$|\.gif$|\.svg$|\.exe$|\.bak$|\.swp$|\.class$|(\/|^)node_modules\/)'
+let g:fuf_coveragefile_exclude = '\v\.(\~$|o|png|jpg|gif|svg|exe|bak|swp|class|DS_Store)$'
 
 map <silent> <leader>e :call FufOpenCurrent()<CR>
 map <silent> <leader>v :call FufOpenVsplit()<CR>
