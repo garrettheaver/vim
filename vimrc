@@ -218,12 +218,27 @@ map <silent> <leader>q :%s/\"/\'/gc<CR>
 command -nargs=* -complete=file -bang MoveTo call Rename(<q-args>, '<bang>')
 cabbrev mv <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'MoveTo' : 'mv')<CR>
 
-""" CONFIGURE FUZZYFINDER
-let g:fuf_coveragefile_exclude = '\v\.(\~$|o|png|jpg|gif|svg|exe|bak|swp|class|DS_Store)$'
+""" CONFIGURE FUZZYFINDER AND COMMAND-T
+let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])(\.hg|\.git|\.bzr|node_modules)($|[/\\])'
+set wildignore+=*.o,*.obj,**/node_modules/**
 
-map <silent> <leader>e :call FufOpenCurrent()<CR>
-map <silent> <leader>v :call FufOpenVsplit()<CR>
-map <silent> <leader>h :call FufOpenHsplit()<CR>
+map <silent> <leader>e :call CmdTOpenCurrent()<CR>
+map <silent> <leader>v :call CmdTOpenVsplit()<CR>
+map <silent> <leader>h :call CmdTOpenHsplit()<CR>
+
+function! CmdTOpenCurrent()
+  exec 'CommandT'
+endfunction
+
+function! CmdTOpenVsplit()
+  exec 'vnew'
+  exec 'CommandT'
+endfunction
+
+function! CmdTOpenHsplit()
+  exec 'new'
+  exec 'CommandT'
+endfunction
 
 function! FufOpenCurrent()
   let g:fuf_keyOpen='<CR>'
