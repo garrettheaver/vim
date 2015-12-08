@@ -220,23 +220,26 @@ cabbrev mv <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'MoveTo' : 'mv')<CR>
 
 """ CONFIGURE FUZZYFINDER AND COMMAND-T
 let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])(\.hg|\.git|\.bzr|node_modules)($|[/\\])'
-set wildignore+=*.o,*.obj,**/node_modules/**
+set wildignore+=*.o,*.obj,**/node_modules/**,**/dist/**
 
 map <silent> <leader>e :call CmdTOpenCurrent()<CR>
 map <silent> <leader>v :call CmdTOpenVsplit()<CR>
 map <silent> <leader>h :call CmdTOpenHsplit()<CR>
 
 function! CmdTOpenCurrent()
+  exec 'CommandTFlush'
   exec 'CommandT'
 endfunction
 
 function! CmdTOpenVsplit()
   exec 'vnew'
+  exec 'CommandTFlush'
   exec 'CommandT'
 endfunction
 
 function! CmdTOpenHsplit()
   exec 'new'
+  exec 'CommandTFlush'
   exec 'CommandT'
 endfunction
 
