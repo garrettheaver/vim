@@ -196,7 +196,7 @@ map <silent> <leader>n :set number<CR>
 map <silent> <leader>N :set relativenumber<CR>
 
 """ CUSTOM FORMAT FUNCTION
-map <silent> <leader>f :call FormatFile()<CR>
+""" map <silent> <leader>f :call FormatFile()<CR>
 
 function! FormatFile()
   norm myHmz
@@ -280,9 +280,13 @@ if has('gui_running')
   if has('gui_macvim')
     set guifont=Consolas:h12
     autocmd GUIEnter * set fullscreen
-    set columns=999
+    set columns=9999
   endif
 endif
+
+""" OVERLENGTH LINES 80 CHARS
+highlight OverLength guibg=#5f6061
+match OverLength /\%<81v.\%>80v/
 
 """ SESSION SAVE AND RESTORE
 map <silent> <leader>ss :mksession! .session<CR>
