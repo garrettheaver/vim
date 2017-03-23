@@ -17,7 +17,7 @@ set backspace=indent,eol,start
 """ LEADER SETUP
 let mapleader=','
 
-""" SET THE COLORSCHEME AND GO FULLSCREEN
+""" SET THE COLORSCHEME
 if !has('gui_running')
   set t_Co=256
   set noesckeys

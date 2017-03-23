@@ -34,7 +34,7 @@ hi FoldColumn      guifg=#465457 guibg=#000000
 hi Folded          guifg=#465457 guibg=#000000
 hi Function        guifg=#A6E22E
 hi Identifier      guifg=#FD971F
-hi Ignore          guifg=#808080 guibg=bg
+hi Ignore          guifg=#808080 guibg=#F8F8F2
 hi IncSearch       guifg=#C4BE89 guibg=#000000
 
 hi Keyword         guifg=#F92672               gui=bold
@@ -74,13 +74,13 @@ if has("spell")
 endif
 
 hi Statement       guifg=#F92672               gui=bold
-hi StatusLine      guifg=#455354 guibg=fg
+hi StatusLine      guifg=#455354 guibg=#F8F8F2
 hi StatusLineNC    guifg=#808080 guibg=#080808
 hi StorageClass    guifg=#FD971F
 hi Structure       guifg=#66D9EF
 hi Tag             guifg=#F92672
 hi Title           guifg=#ef5939
-hi Todo            guifg=#FFFFFF guibg=bg      gui=bold
+hi Todo            guifg=#FFFFFF guibg=#F8F8F2      gui=bold
 
 hi Typedef         guifg=#66D9EF
 hi Type            guifg=#66D9EF               gui=none
