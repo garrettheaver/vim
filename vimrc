@@ -219,7 +219,7 @@ command -nargs=* -complete=file -bang MoveTo call Rename(<q-args>, '<bang>')
 cabbrev mv <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'MoveTo' : 'mv')<CR>
 
 """ CONFIGURE FUZZYFINDER AND COMMAND-T
-let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])(\.hg|\.git|\.bzr|node_modules)($|[/\\])'
+let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])(\.hg|\.git|\.bzr|node_modules|__pycache__)($|[/\\])'
 set wildignore+=*.o,*.obj,**/node_modules/**,**/dist/**
 
 map <silent> <leader>e :call CmdTOpenCurrent()<CR>
@@ -278,7 +278,7 @@ if has('gui_running')
   end
 
   if has('gui_macvim')
-    set guifont=Consolas:h12
+    set guifont=Consolas:h13
     autocmd GUIEnter * set fullscreen
     set columns=9999
   endif
