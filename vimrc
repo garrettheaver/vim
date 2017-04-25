@@ -196,7 +196,7 @@ map <silent> <leader>n :set number<CR>
 map <silent> <leader>N :set relativenumber<CR>
 
 """ CUSTOM FORMAT FUNCTION
-""" map <silent> <leader>f :call FormatFile()<CR>
+map <silent> <leader>f :call FormatFile()<CR>
 
 function! FormatFile()
   norm myHmz
@@ -281,6 +281,14 @@ if has('gui_running')
     set guifont=Consolas:h12
     autocmd GUIEnter * set fullscreen
     set columns=9999
+  endif
+
+  if has('x11')
+    vmap <C-c> "+yi
+    vmap <C-x> "+c
+    vmap <C-v> c<ESC>"+p
+    imap <C-v> <C-r><C-o>+
+    set columns=9999 lines=9999
   endif
 endif
 
