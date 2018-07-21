@@ -227,20 +227,17 @@ map <silent> <leader>v :call CmdTOpenVsplit()<CR>
 map <silent> <leader>h :call CmdTOpenHsplit()<CR>
 
 function! CmdTOpenCurrent()
-  exec 'CommandTFlush'
-  exec 'CommandT'
+  exec 'CtrlP'
 endfunction
 
 function! CmdTOpenVsplit()
   exec 'vnew'
-  exec 'CommandTFlush'
-  exec 'CommandT'
+  exec 'CtrlP'
 endfunction
 
 function! CmdTOpenHsplit()
   exec 'new'
-  exec 'CommandTFlush'
-  exec 'CommandT'
+  exec 'CtrlP'
 endfunction
 
 function! FufOpenCurrent()
