@@ -9,7 +9,18 @@ snippet	timestamp
 	END;
 	$$ LANGUAGE plpgsql VOLATILE;
 
-snippet	ttable
+snippet	itable
+	--
+	-- $1
+	--
+	CREATE TABLE ${1:}
+	(
+		id int NOT NULL,
+		CONSTRAINT pk_$1 PRIMARY KEY (id),
+		${2}
+	);
+
+snippet	stable
 	--
 	-- $1
 	--
@@ -24,42 +35,20 @@ snippet	ttable
 		${2}
 	);
 
-snippet	ntable
-	--
-	-- $1
-	--
-	CREATE SEQUENCE sq_$1;
-
-	CREATE TABLE ${1:}
-	(
-		id int NOT NULL DEFAULT nextval('sq_$1'),
-		CONSTRAINT pk_$1 PRIMARY KEY (id),
-		${2}
-	);
-
-snippet	itable
-	--
-	-- $1
-	--
-	CREATE TABLE ${1:}
-	(
-		id int NOT NULL,
-		CONSTRAINT pk_$1 PRIMARY KEY (id),
-		${2}
-	);
-
 snippet utable
 	--
 	-- $1
 	--
 	CREATE TABLE ${1:}
 	(
-		id uuid NOT NULL DEFAULT uuid_generate_v4(),
+		id uuid NOT NULL DEFAULT uuidv7(),
 		CONSTRAINT pk_$1 PRIMARY KEY (id),
+		created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		updated_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		${2}
 	);
 
-snippet	foreign
+snippet	fkey
 	ALTER TABLE $1
 	ADD CONSTRAINT fk_${1:}_${2:}
 	FOREIGN KEY ($2) REFERENCES ${3:} (${4:id})
@@ -75,8 +64,4 @@ snippet	uindex
 
 snippet	gindex
 	CREATE INDEX gx_${1:}_${2:}
-	ON $1 USING GIST ($2);
-
-snippet	vindex
-	CREATE INDEX vx_${1:}_${2:}
 	ON $1 USING GIN ($2);

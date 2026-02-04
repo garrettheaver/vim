@@ -32,7 +32,6 @@
 :FufTag	fuf.jax	/*:FufTag*
 :FufTagWithCursorWord	fuf.jax	/*:FufTagWithCursorWord*
 :FufTaggedFile	fuf.jax	/*:FufTaggedFile*
-abc	fuf.jax	/*abc*
 fuf	fuf.jax	/*fuf*
 fuf#setOneTimeVariables()	fuf.jax	/*fuf#setOneTimeVariables()*
 fuf-abbreviation	fuf.jax	/*fuf-abbreviation*
